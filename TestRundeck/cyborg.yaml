@@ -1,0 +1,15 @@
+user_id: {user_id} # 用户id，在cyborg.users表中可以查到
+group_name: sites/{spider_name}/ # 爬虫组名
+job: # 任务
+# 常驻爬虫配置
+- duplicate: 3  # 副本数
+  name: {name}  # 任务名称
+  spider: sites.{spider_name}.spiders.{spider}.CyborgSpider # 爬虫
+  type: daemon # 类型
+  worker: 6 # 进程数
+# 定时任务配置
+- cron: 9 9 * * *  # 触发时间
+  func: {fumc_name}  # 调用函数
+  name: {name} # 任务名称
+  spider: sites.{spider_name}.tasks.Task # 任务脚本类
+  timeout: 1d # 过期时间
